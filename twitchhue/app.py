@@ -124,7 +124,7 @@ def run_sub_light():
                 d['ct'] = int(c['ct'])
 
             bot.bridge.set_light(light_names, d)
-            time.sleep(1)
+            time.sleep(float(config['interval']))
     finally:
         # Reset the lights to their prev state
         for l in lights:

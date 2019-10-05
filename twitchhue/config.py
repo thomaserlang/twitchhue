@@ -4,6 +4,7 @@ config = {
     'channels': [],
     'rooms': [],
     'lights': [],
+    'interval': 1,
     'colors': [
         {
             'color': '2b59ff',
