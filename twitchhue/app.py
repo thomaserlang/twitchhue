@@ -69,6 +69,10 @@ async def connect(**kwargs):
     if not hasattr(bot, 'bridge'):
         bot.bridge = bridge_connect()
 
+@bot.on('PING')
+def keepalive(message, **kwargs):
+    bot.send('PONG', message=message)
+
 @bot.on('USERNOTICE')
 async def usernotice(**kwargs):
     if kwargs['msg-id'] not in ('sub', 'resub', 'subgift', 
