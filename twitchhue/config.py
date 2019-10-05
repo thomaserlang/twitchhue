@@ -4,7 +4,48 @@ config = {
     'channels': [],
     'rooms': [],
     'lights': [],
-    'alert': 'short',
+    'colors': [
+        {
+            'color': '2b59ff',
+            'bri': 255,
+        },
+        {
+            'color': 'ff0303',
+            'bri': 255,
+        },
+        {
+            'color': '2b59ff',
+            'bri': 255,
+        },
+        {
+            'color': 'ff0303',
+            'bri': 255,
+        },        
+        {
+            'color': '2b59ff',
+            'bri': 255,
+        },
+        {
+            'color': 'ff0303',
+            'bri': 255,
+        },
+        {
+            'color': '2b59ff',
+            'bri': 255,
+        },
+        {
+            'color': 'ff0303',
+            'bri': 255,
+        },
+        {
+            'color': '2b59ff',
+            'bri': 255,
+        },
+        {
+            'color': 'ff0303',
+            'bri': 255,
+        },
+    ]
 }
 
 def load(path=None):

@@ -1,4 +1,4 @@
-import requests, phue, time, asyncio, bottom
+import requests, phue, time, asyncio, bottom, rgbxy
 from config import config, load
 from unpack import rfc2812_handler
 
@@ -87,26 +87,52 @@ async def message(message, **kwargs):
             run_sub_light()
 
 def run_sub_light():
-
-    alert = 'select'
-    if config['alert'] == 'long':
-        alert = 'lselect'
-
     print('Running sub light')
-    if not config['rooms'] and not config['lights']:
-        for l in bot.bridge.lights:
-            l.alert = alert
+
+    light_names = []
 
     if config['rooms']:
         for r in config['rooms']:
             group = bot.bridge.get_group(r)
             if group:
-                bot.bridge.set_light([int(i) for i in group['lights']], 'alert', alert)
+                light_names.extend([int(i) for i in group['lights']])
             else:
-                print('Unknown group')
+                print(f'Unknown group {r}')
 
     if config['lights']:
-        bot.bridge.set_light(config['lights'], 'alert', alert)
+        light_names.extend(config['lights'])
+
+    lights = []    
+    for l in light_names:
+        lights.append(bot.bridge.get_light(l))
+
+    light_names = [l['name'] for l in lights]
+
+
+    try:
+        converter = rgbxy.Converter()
+        for c in config['colors']:        
+            d = {
+                'on': True, 
+            }
+
+            if c.get('color'):
+                d['xy'] = converter.hex_to_xy(c['color'].strip('#'))
+            if c.get('bri'):
+                d['bri'] = int(c['bri'])
+            if c.get('ct'):
+                d['ct'] = int(c['ct'])
+
+            bot.bridge.set_light(light_names, d)
+            time.sleep(1)
+    finally:
+        # Reset the lights to their prev state
+        for l in lights:
+            for k in list(l['state'].keys()):
+                if not k in ['on', 'bri', 'xy', 'ct']:
+                    del l['state'][k]
+            bot.bridge.set_light(l['name'], l['state'])
+
 
 if __name__ == '__main__':
     load()
