@@ -10,4 +10,8 @@ Example config:
 channels:
     - erleperle
     - erletest
+rooms:
+    - Dining room
+lights:
+    - Bedroom ceiling
 ```
