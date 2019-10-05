@@ -75,7 +75,7 @@ def keepalive(message, **kwargs):
 
 @bot.on('USERNOTICE')
 async def usernotice(**kwargs):
-    if kwargs['msg-id'] not in ('sub', 'resub', 'subgift', 
+    if kwargs['msg-id'] in ('sub', 'resub', 'subgift', 
         'anonsubgift', 'giftpaidupgrade', 'submysterygift',
         'anonsubmysterygift'):
         run_sub_light()
