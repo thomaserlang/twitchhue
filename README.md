@@ -1,6 +1,6 @@
 # Twitch Hue
 
-Proof of concept. Sends an `alert` to all your twitch lights when somebody subs.
+Proof of concept. Sends an `alert` to all your Hue lights when somebody subs.
 
 Create a config file called `twitchhue.yaml`. Place it next to the executable. 
 
