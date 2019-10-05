@@ -87,9 +87,26 @@ async def message(message, **kwargs):
             run_sub_light()
 
 def run_sub_light():
+
+    alert = 'select'
+    if config['alert'] == 'long':
+        alert = 'lselect'
+
     print('Running sub light')
-    for l in bot.bridge.lights:
-        l.alert = 'select'
+    if not config['rooms'] and not config['lights']:
+        for l in bot.bridge.lights:
+            l.alert = alert
+
+    if config['rooms']:
+        for r in config['rooms']:
+            group = bot.bridge.get_group(r)
+            if group:
+                bot.bridge.set_light([int(i) for i in group['lights']], 'alert', alert)
+            else:
+                print('Unknown group')
+
+    if config['lights']:
+        bot.bridge.set_light(config['lights'], 'alert', alert)
 
 if __name__ == '__main__':
     load()

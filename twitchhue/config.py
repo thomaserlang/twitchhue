@@ -2,7 +2,9 @@ import os, yaml
 
 config = {
     'channels': [],
-    'sub_light': [],
+    'rooms': [],
+    'lights': [],
+    'alert': 'short',
 }
 
 def load(path=None):
