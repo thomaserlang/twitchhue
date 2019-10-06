@@ -1,8 +1,9 @@
 # Twitch Hue
 
-Proof of concept. Sends an `alert` to all your Hue lights when somebody subs.
+Change the color of your lights when somebody subs.
 
-Create a config file called `twitchhue.yaml`. Place it next to the executable. 
+Create a config file called `twitchhue.yaml`. Place it next to the executable.  
+Download it from [here](https://github.com/thomaserlang/twitchhue/releases).
 
 Example config:
 
@@ -14,10 +15,11 @@ rooms:
     - Dining room
 lights:
     - Bedroom ceiling
+interval: 0.5 # number of seconds between each color change
 colors:
   -
-    color: 2b59ff
-    bri: 255
+    color: 2b59ff # RGB
+    bri: 255      # Brightness
   -
     color: ff0303
     bri: 255
