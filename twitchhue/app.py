@@ -77,7 +77,7 @@ def keepalive(message, **kwargs):
 async def usernotice(**kwargs):
     if kwargs['msg-id'] in ('sub', 'resub', 'subgift', 
         'anonsubgift', 'giftpaidupgrade', 'submysterygift',
-        'anonsubmysterygift'):
+        'anonsubmysterygift', 'extendsub'):
         run_sub_light()
 
 @bot.on('PRIVMSG')
