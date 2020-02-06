@@ -9,8 +9,7 @@ Example config:
 
 ```yaml
 channels:
-    - erleperle
-    - erletest
+    - somechannel
 rooms:
     - Dining room
 lights:
